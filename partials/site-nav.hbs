@@ -1,0 +1,59 @@
+<div class="uk-container">
+    <nav class="uk-navbar">
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav uk-animation-fade">
+                <li class="uk-visible@m">
+                    {{#if @site.icon}}
+                    <a class="uk-logo uk-padding-remove uk-margin-right" href="{{@site.url}}"
+                        >
+                        <img class="site-logo uk-border-rounded" src="{{img_url @site.icon size="xs"}}"
+                            alt="{{@site.title}}" style="width:80px;height:100%" />
+                    </a>
+                    {{/if}}
+                </li>
+                <li>
+                    <a class="uk-padding-remove uk-margin-right" href="{{@site.url}}">{{@site.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                {{#if @site.navigation}}
+                {{navigation}}
+                {{/if}}
+                <li>
+                    <a class="uk-padding-remove uk-margin-left" href="/archive/">Archive</a>
+                    <div class="uk-border-rounded"
+                        uk-dropdown="pos: bottom-center; delay-hide:100; animation: uk-animation-slide-top-small; duration: 400;offset: 0">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            {{#get "tags" limit="all"}}
+                            <li>
+                                {{tags separator=" "}}
+                            </li>
+                            {{/get}}
+                        </ul>
+                    </div>
+                </li>
+                {{#get "pages" filter="title:-['archive','more']" limit="all"}}
+                {{#if pages}}
+                <li>
+                    <a class="uk-padding-remove uk-margin-left" href="/more/">More</a>
+                    <div class="uk-border-rounded"
+                        uk-dropdown="pos: bottom-justify; delay-hide:100; animation: uk-animation-slide-top-small; duration: 400;offset: 0">
+                        <ul class="uk-nav uk-navbar-dropdown-nav ">
+                            {{#foreach pages }}
+                            <li>
+                                <a href="{{url}}">
+                                    {{title}}
+                                </a>
+                            </li>
+                            {{/foreach}}
+                        </ul>
+                    </div>
+                </li>
+                {{/if}}
+                {{/get}}
+            </ul>
+        </div>
+    </nav>
+</div>

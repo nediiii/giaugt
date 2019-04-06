@@ -1,0 +1,97 @@
+.hue-rotate {
+  animation: hue-rotation 8s linear 0ms infinite !important;
+}
+
+.hue-rotate a {
+  text-decoration: none;
+}
+
+.hue-rotate span a:hover {
+  font-size: 1.1em;
+}
+
+.uk-block .hue-rotate {
+  background-color: pink;
+  background-image: radial-gradient(
+    farthest-corner at 45px 45px,
+    pink 0%,
+    #d1e6fa 100%
+  );
+}
+
+@keyframes hue-rotation {
+  0% {
+    filter: hue-rotate(0);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.sider {
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 312.5px;
+  width: 100%-1280px;
+  bottom: 0;
+}
+
+.sider .sider-container {
+  padding: 30px;
+  box-sizing: content-box;
+}
+
+.tm-nav {
+  font-size: 90%;
+}
+
+.tm-nav ul {
+  margin: 0 25px;
+}
+
+.tm-nav > li.uk-active > a {
+  position: relative;
+}
+
+.tm-nav > li.uk-active > a:before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -25px;
+  width: 15px;
+  border-top: 1px solid #1e87f0;
+}
+
+.tm-nav .uk-nav-header {
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+:not(pre) > code {
+  white-space: normal;
+}
+
+/* 修复post-card的图片和文字的间隔问题 */
+/* start-1 */
+.uk-grid-small {
+  margin-left: 0;
+}
+
+.uk-grid-small > * {
+  padding-left: 0;
+}
+
+@media (min-width: 960px) {
+  .uk-grid-small {
+    margin-left: -15px;
+  }
+  .uk-grid-small > * {
+    padding-left: 15px;
+  }
+}
+
+/* end-1 */
+.uk-tab::before {
+  width: 0%;
+}

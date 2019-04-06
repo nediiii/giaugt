@@ -1,0 +1,23 @@
+<nav role="navigation">
+    <div class="uk-pagination uk-margin" style="position:relative">
+
+        {{#if prev}}
+        <li style="position:absolute;left:0">
+            <a rel="next" href="{{page_url prev}}"><span class="uk-margin-small-right"
+                    uk-pagination-previous></span>&nbsp;{{t "Previous"}}
+            </a>
+        </li>
+        {{/if}}
+
+        <span class="uk-margin-auto uk-visible@m" style="float:none;margin-top:0">Page {{page}} of {{pages}}</span>
+
+        {{#if next}}
+        <li style="position:absolute;right:0">
+            <a rel="prev" href="{{page_url next}}">{{t "Next"}}&nbsp;<span class="uk-margin-small-left"
+                    uk-pagination-next></span>
+            </a>
+        </li>
+        {{/if}}
+
+    </div>
+</nav>

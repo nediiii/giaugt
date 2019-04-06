@@ -1,0 +1,151 @@
+<div class="uk-width-1-4@m uk-visible@l" style="padding:0 30px;z-index: 1">
+
+    {{!-- 用uk-tab-bottom uk-tab替换以下ul的class即可更换tab样式 --}}
+    {{!-- 用uk-subnav uk-subnav-pill替换以下ul的class即可更换switch样式 --}}
+    <ul class="uk-tab-bottom uk-tab hue-rotate uk-margin-remove" uk-switcher="animation: uk-animation-fade"
+        uk-sticky="offset: 81">
+        <li><a href="#">ABOUT</a></li>
+        <li class="uk-active"><a href="#" aria-expanded="true">TOC</a></li>
+        <li><a href="#">MORE</a></li>
+    </ul>
+
+    <ul class="uk-switcher uk-margin">
+        <li>
+            {{!-- 对应与上面的关于 --}}
+            <div uk-sticky="offset: 120">
+                {{#foreach authors}}
+                {{#if profile_image}}
+                <div class="uk-padding uk-animation-toggle uk-flex uk-flex-center" style="padding-bottom:10px">
+                    <a href="/about/">
+                        <img class="uk-border-circle  uk-animation-shake" style="width:100%;height:100%"
+                            src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                    </a>
+                </div>
+                {{/if}}
+                <div class="uk-text-center">
+                    <h2>
+                        {{name}}
+                    </h2>
+                    {{> author-description}}
+                    {{> social-icon}}
+                </div>
+                {{/foreach}}
+            </div>
+        </li>
+        <li>
+            {{!-- 对应与上面的目录 --}}
+            <div uk-sticky="offset: 120" id="my-post-toc" class="hue-rotate" style="font-size:18px"
+                uk-scrollspy-nav="closest: li; scroll: true; offset: 60">
+            </div>
+        </li>
+        <li>
+            {{!-- 对应与上面的更多 --}}
+            <div uk-sticky="offset: 120">
+                {{#if primary_tag}}
+                {{#get "posts" include="tags" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="5"}}
+                {{#foreach posts}}
+                <div>
+                    {{#if @first}}
+                    <span class="uk-text-muted">
+                        RELATED POSTS：
+                    </span>
+                    <div>
+                        <a href="{{url}}" class="uk-button uk-button-text uk-text-left uk-text-break">
+                            {{title}}
+                        </a>
+                        <br>
+                        {{else}}
+                        <a href="{{url}}" class="uk-button uk-button-text uk-text-left uk-text-break">
+                            {{title}}
+                        </a>
+                        <br>
+                        {{/if}}
+                        {{#if @last}}
+                    </div>
+                    <hr style="margin:15px 0px">
+                    {{/if}}
+                </div>
+                {{/foreach}}
+                {{/get}}
+
+                <div>
+                    <span class="uk-text-muted">
+                        RELATED TAGS：
+                    </span>
+                    <div>
+                        {{#foreach tags}}
+                        <a class="uk-link-reset" href="{{url}}" target="_blank">
+                            <span class="uk-label">{{name}}</span>
+                        </a>
+                        {{/foreach}}
+                    </div>
+                    <hr style="margin:15px 0px">
+                </div>
+                {{/if}}
+
+                <div>
+                    <span class="uk-text-muted">
+                        ALL TAGS：
+                    </span>
+                    <br>
+                    {{#get "tags" limit="all"}}
+                    {{#foreach tags}}
+                    <a class="uk-link-reset" href="{{url}}" target="_blank">
+                        <span class="uk-label uk-label-success">{{name}}</span>
+                    </a>
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <script src="{{asset "js/md-toc.min.js"}}"></script>
+    <script type="text/javascript">
+        new Toc('my-post', {
+            'level': 3,
+            'top': 200,
+            'class': '',
+            'targetId': 'my-post-toc'
+        });
+        var mutationObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                var tocContent = mutation.target.children[0];
+
+                var tocList = tocContent.querySelectorAll("ul");
+                for (let i = 0; i < tocList.length; i++) {
+                    tocList[i].setAttribute("style", "display:none");
+                }
+                for (let i = 0; i < tocList.length; i++) {
+                    var subTocList = tocList[i].querySelectorAll("li");
+                    var currentActive = false;
+                    for (let j = 0; j < subTocList.length; j++) {
+                        if (subTocList[j].getAttribute("class") == "uk-active") {
+                            currentActive = true;
+                            var sSubTocList = subTocList[j].querySelectorAll("ul");
+                            if (sSubTocList.length > 0) {
+                                sSubTocList[0].setAttribute("style", "display:block");
+                            }
+                        }
+                    }
+                    if (currentActive) {
+                        tocList[i].setAttribute("style", "display:block");
+                    }
+                }
+            });
+        });
+        mutationObserver.observe(document.getElementById("my-post-toc"), {
+            attributes: true,
+        });
+
+
+
+        var tocElement = document.getElementById("my-post-toc");
+        tocElement.addEventListener("mouseover", function (event) {
+            var elementList = event.target.parentNode.children;
+            if (elementList.length > 1) {
+                elementList[1].setAttribute("style", "display:block");
+            }
+        }, false);
+    </script>
+</div>

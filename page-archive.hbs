@@ -1,0 +1,101 @@
+{{!< default}}
+<div class="uk-container">
+    <h2 class="uk-text-center uk-padding-small">ARCHIVE</h2>
+    <div>
+        <div>
+            <ul id="tab" class="uk-tab uk-flex-center hue-rotate" uk-tab="connect: #tab-target; animation: uk-animation-fade">
+                <li><a href="#">all</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul id="tab-target" class="uk-switcher">
+                {{!-- 年份分隔 --}}
+                <li>
+                    <ul uk-accordion>
+                        {{!-- 月份分隔                         --}}
+                        <li>
+                            <a class="uk-accordion-title" href="#">blogs</a>
+                            <div class="uk-accordion-content">
+                                <ul class="uk-list uk-list-divider">
+                                    {{#get "posts" include="tags" limit="all" order="published_at desc"}}
+                                    {{#foreach posts}}
+                                    <li
+                                        class="post-list post-month-{{date published_at format="MMMM"}} post-year-{{date published_at format="YYYY"}}">
+                                        <span class="uk-margin-right">{{date published_at format="MM-DD YYYY"}}</span>
+                                        <a href="{{url}}" class="uk-link uk-link-reset uk-button-text">{{title}}</a>
+                                        {{#foreach tags limit="3"}}
+                                        <span
+                                            class="uk-badge hue-rotate uk-float-right uk-margin-right-small uk-visible@s"
+                                            style="margin-left: 3px;">
+                                            <a href="{{url}}" style="color:aliceblue">{{name}}</a>
+                                        </span>
+                                        {{/foreach}}
+                                    </li>
+                                    {{/foreach}}
+                                    {{/get}}
+                                </ul>
+                            </div>
+                        </li>
+                        {{!-- 月份分隔                         --}}
+                    </ul>
+                </li>
+                {{!-- 年份分隔 --}}
+            </ul>
+        </div>
+    </div>
+    <script>
+
+        var tabElement = document.getElementById("tab");
+        var tabTargetElement = document.getElementById("tab-target");
+        // 所有的li元素
+        var listArray = document.querySelectorAll("li.post-list");
+        // 所有的年份 set
+        var postYearSet = new Set();
+        var postMonthSet = new Set();
+
+        var yearStart = '<li><ul uk-accordion>';
+        var yearEnd = '</ul></li>';
+
+        function monthStart(month, open) {
+            var attr = "";
+            if (open) {
+                attr = 'class="uk-open"';
+            }
+            return '<li ' + attr + '><a class="uk-accordion-title" href = "#" >' + month + '</a ><div class="uk-accordion-content uk-margin-remove uk-padding-small"><ul class="uk-list uk-list-divider">';
+        }
+
+        var monthEnd = '</ul></div></li>';
+        var tabContent = "";
+        var tabTargetContent = "";
+
+        for (var i = 0; i < listArray.length; i++) {
+            var classNameArray = listArray[i].getAttribute("class").split(" ");
+            if (!postYearSet.has(classNameArray[2])) {
+                // 遇到未记录的年份
+                if (postYearSet.size > 0) {
+                    postMonthSet = new Set();
+                    //遇到第n(n>=2)个新年份
+                    console.log("遇到2018");
+                    tabTargetContent = tabTargetContent + monthEnd + yearEnd + yearStart + monthStart(classNameArray[1].split("post-month-")[1], true);
+                } else {
+                    //遇到第一个新年份
+                    tabTargetContent = tabTargetContent + yearStart + monthStart(classNameArray[1].split("post-month-")[1], true);
+                }
+                postMonthSet.add(classNameArray[1]);
+                postYearSet.add(classNameArray[2]);
+                tabContent += '<li><a href="#">' + classNameArray[2].split("post-year-")[1] + '</a></li>';
+            }
+            else if (!postMonthSet.has(classNameArray[1])) {
+                // 遇到已记录的年份里未记录的月份
+                tabTargetContent = tabTargetContent + monthEnd + monthStart(classNameArray[1].split("post-month-")[1]);
+                postMonthSet.add(classNameArray[1]);
+            }
+            tabTargetContent += listArray[i].outerHTML;
+
+        }
+        tabTargetContent = tabTargetContent + monthEnd + yearEnd;
+        console.log(tabContent);
+        tabElement.innerHTML = tabContent;
+        tabTargetElement.innerHTML = tabTargetContent;
+    </script>
+</div>

@@ -1,0 +1,62 @@
+<div class="uk-card uk-card-default uk-card-body uk-card-hover uk-margin-small uk-padding-small uk-border-rounded"
+    uk-scrollspy="cls: uk-animation-fade;delay: 300;repeat: true" style="background-color: rgba(255,255,255,.6);">
+
+    {{!-- 左上角tag --}}
+    {{#if tags}}
+    <div class="uk-block uk-float-right" style="position: absolute;right: 15px;z-index:999;">
+        {{#foreach tags limit="3"}}
+        <span class=" uk-badge hue-rotate uk-float-right uk-margin-right-small" style="margin-left: 3px">
+            <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}
+            </a>
+        </span>
+        {{/foreach}}
+    </div>
+    {{/if}}
+    {{!-- 左上角tag --}}
+
+
+    <div class="uk-grid-match">
+        <div class="uk-width-expand@m uk-grid-small uk-margin-remove">
+            {{#if feature_image}}
+            <div class="uk-width-1-3@m uk-padding-remove">
+                <a href="{{url}}">
+
+                    <img class="uk-border-rounded uk-width-expand@s" srcset="{{img_url feature_image size="s"}} 300w,
+                                        {{img_url feature_image size="m"}} 600w,
+                                        {{img_url feature_image size="l"}} 1000w,
+                                        {{img_url feature_image size="xl"}} 2000w"
+                        sizes="(max-width: 1000px) 400px, 700px" src="{{img_url feature_image size="m"}}"
+                        alt="{{title}}" />
+                </a>
+            </div>
+            {{/if}}
+
+            <div class="uk-width-expand@m">
+                <article class="uk-article uk-position-relative" style="height:100%">
+                    <h2 class="uk-margin-remove"><a class="uk-link-reset uk-text-break" href="{{url}}">{{title}}</a>
+                    </h2>
+                    <p class="uk-article-meta uk-margin-remove">
+                        <span>
+                            Written&nbsp;by{{#foreach authors}}
+                            {{^if @first}},{{/if}}
+                            <a href="{{url}}">{{name}}</a>
+                            {{/foreach}}
+                            on&nbsp;{{date created_at format="MMMM DD, YYYY"}}.&nbsp;
+                        </span>
+                        <span class="uk-visible@s">
+                            Updated&nbsp;{{date updated_at timeago="true"}}
+                        </span>
+                    </p>
+                    <p class="uk-text-break uk-margin-medium-bottom">{{excerpt characters="140"}}</p>
+                    <div class="uk-position-absolute" style="bottom:-6px;width:100%">
+                        <span>
+                            {{reading_time}}
+                        </span>
+                        <a class="uk-button uk-button-text uk-float-right" style="font-size:16px;" href="{{url}}">Read
+                            more</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

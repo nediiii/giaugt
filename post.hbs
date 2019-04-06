@@ -1,0 +1,68 @@
+{{!< default}}
+
+<div class="uk-container">
+    <article class="uk-article {{post_class}}" uk-scrollspy="target: > p; cls:uk-animation-fade; delay: 500">
+        {{#post}}
+        {{#has tag="#hide-feature-img"}}
+        {{else}}
+        {{> feature_image}}
+        {{/has}}
+        <h1 class="uk-article-title uk-heading-line uk-text-center">{{title}}</h1>
+        <p class="uk-article-meta uk-text-center">Written by <a href="#">{{authors}}</a> on
+            {{date created_at format="MMMM DD, YYYY"}}.
+            updated at {{date updated_at timeago="true"}}
+        </p>
+        <div class="uk-grid-match">
+            <div class="uk-width-expand@m">
+                <div class="uk-width-expand@m">
+                    <div id="my-post" class="uk-text-break">
+                        {{content}}
+                    </div>
+                    {{#has tag="#hide-cc-license"}}
+                    {{else}}
+                    <hr>
+                    <p class="uk-text-center">
+                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img
+                                alt="Creative Commons License" style="border-width:0"
+                                src="https://i.creativecommons.org/l/by-nc-nd/3.0/80x15.png" /></a><br />This work is
+                        licensed under a <a rel="license"
+                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons
+                            Attribution-NonCommercial-NoDerivs 3.0 Unported License</a>.
+                    </p>
+                    {{/has}}
+                    <hr class="uk-divider-icon">
+                    <div>
+                        {{!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs --}}
+                        {{#next_post}}
+                        <div class="uk-float-right">
+                            <span class="uk-text-muted">
+                                NEXT:&nbsp;
+                            </span>
+                            <a class="uk-link uk-link-reset uk-button-text" href="{{url}}">
+                                {{title}}
+                            </a>
+                        </div>
+                        {{/next_post}}
+
+                        {{!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs --}}
+                        {{#prev_post}}
+                        <span class="uk-text-muted">
+                            PREV:&nbsp;
+                        </span>
+                        <a class="uk-link uk-link-reset uk-button-text" href="{{url}}">
+                            {{title}}
+                        </a>
+                        {{/prev_post}}
+                    </div>
+                    {{> comment}}
+                </div>
+                {{#has tag="#show-sider-bar"}}
+                {{else}}
+                {{> sider-bar}}
+                {{/has}}
+            </div>
+        </div>
+        {{/post}}
+    </article>
+
+</div>

@@ -1,0 +1,38 @@
+{{!< default}}
+
+<div class="uk-container">
+
+    {{#author}}
+    <section class="author {{#if profile_image}}has-image{{/if}}" data-author="{{slug}}">
+        {{#if profile_image}}
+        <div class="uk-padding uk-animation-toggle uk-flex uk-flex-center" style="padding-bottom:10px">
+            <a href="/about/">
+                <img class="uk-border-circle  uk-animation-shake" style="width:100%;height:100%"
+                    src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+            </a>
+        </div>
+
+
+        {{/if}}
+
+        <div>
+            <div class="uk-text-center">
+                <h2>
+                    {{name}}
+                </h2>
+                {{> author-description}}
+                {{> social-icon}}
+            </div>
+        </div>
+        <hr class="uk-divider-icon">
+    </section>
+    {{/author}}
+
+    <div>
+        {{#foreach posts}}
+        {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+        {{> "post-card"}}
+        {{/foreach}}
+        {{pagination}}
+    </div>
+</div>

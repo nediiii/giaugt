@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/uikit.min.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/prism.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/gitalk.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/custom.css"}}" />
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+
+    <canvas class="uk-position-fixed" style="opacity:0.3;z-index:-1;" color-swarm="" h="4/5" height="100vh"
+        width="100vw" id="colorSwarm"></canvas>
+    <header uk-sticky="show-on-up: true;animation: uk-animation-slide-top;"
+        style="background-color:white;border-bottom: 1px solid rgba(222, 222, 222, 0.4);">
+        {{> "site-nav"}}
+    </header>
+
+    <div class="uk-margin uk-margin-top" style="min-height:80vh">
+
+        {{{body}}}
+
+    </div>
+    {{> footer}}
+
+    {{ghost_foot}}
+
+    <script src="{{asset "js/uikit.min.js"}}"></script>
+    <script src="{{asset "js/canvas-circle.js"}}"></script>
+    <script src="{{asset "js/prism.js"}}"></script>
+    <script src="{{asset "js/custom.js"}}"></script>
+</body>
+
+</html>

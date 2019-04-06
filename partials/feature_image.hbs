@@ -1,0 +1,18 @@
+{{#if feature_image}}
+<div class="uk-text-center">
+    <div class="uk-inline-clip uk-transition-toggle uk-light" tabindex="0">
+        <img class="uk-border-rounded" srcset="{{img_url feature_image size="s"}} 300w,
+                                                    {{img_url feature_image size="m"}} 600w,
+                                                    {{img_url feature_image size="l"}} 1000w,
+                                                    {{img_url feature_image size="xl"}} 2000w" sizes="(max-width: 800px) 400px,
+                                                    (max-width: 1170px) 700px,
+                                                    1400px" src="{{img_url feature_image size="xl"}}"
+            alt="{{title}}" />
+        <div class="uk-position-center">
+            <div class="uk-transition-slide-top-small">
+                <h2 class="uk-margin-remove" style="text-shadow:2px 2px 4px #000000;">{{title}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
