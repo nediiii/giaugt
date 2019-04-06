@@ -4,8 +4,7 @@
             <ul class="uk-navbar-nav uk-animation-fade">
                 <li class="uk-visible@m">
                     {{#if @site.icon}}
-                    <a class="uk-logo uk-padding-remove uk-margin-right" href="{{@site.url}}"
-                        >
+                    <a class="uk-logo uk-padding-remove uk-margin-right" href="{{@site.url}}">
                         <img class="site-logo uk-border-rounded" src="{{img_url @site.icon size="xs"}}"
                             alt="{{@site.title}}" style="width:80px;height:100%" />
                     </a>
@@ -21,19 +20,23 @@
                 {{#if @site.navigation}}
                 {{navigation}}
                 {{/if}}
+                {{#get "tags" limit="all"}}
+                {{#if tags}}
                 <li>
                     <a class="uk-padding-remove uk-margin-left" href="/archive/">Archive</a>
                     <div class="uk-border-rounded"
                         uk-dropdown="pos: bottom-center; delay-hide:100; animation: uk-animation-slide-top-small; duration: 400;offset: 0">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            {{#get "tags" limit="all"}}
+                            {{#foreach tags}}
                             <li>
-                                {{tags separator=" "}}
+                                <a href="{{url}}">{{name}}</a>
                             </li>
-                            {{/get}}
+                            {{/foreach}}
                         </ul>
                     </div>
                 </li>
+                {{/if}}
+                {{/get}}
                 {{#get "pages" filter="title:-['archive','more']" limit="all"}}
                 {{#if pages}}
                 <li>
