@@ -95,3 +95,30 @@
 .uk-tab::before {
   width: 0%;
 }
+
+#my-post p {
+  margin: 10px 0px 0px 15px;
+}
+
+#my-post pre {
+  margin-left: 15px;
+}
+
+#my-post code {
+  font-size: inherit;
+}
+
+#my-post blockquote {
+  font-size: 90%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#my-post h1,
+#my-post h2,
+#my-post h3,
+#my-post h4,
+#my-post h5,
+#my-post h6 {
+  margin: 15px 0px 10px 0px;
+}
