@@ -26,15 +26,14 @@
             </div>
         </div>
     </div>
+    <h1 class="uk-text-center hue-rotate uk-hidden@s uk-margin-remove" style="color:blue;text-shadow:2px 2px 4px #666666;">
+        {{name}}
+    </h1>
     {{else}}
     <h1 class="uk-text-center hue-rotate" style="color:blue;text-shadow:2px 2px 4px #666666;">
         {{name}}
     </h1>
     {{/if}}
-    <h1 class="uk-text-center hue-rotate uk-hidden@s uk-margin-remove"
-        style="color:blue;text-shadow:2px 2px 4px #666666;">
-        {{name}}
-    </h1>
     <h2 class="uk-text-center" style="margin-top:20px;margin-bottom:5px">
         {{plural ../pagination.total empty='No blog' singular='% blog' plural='% blogs'}} in total
     </h2>
