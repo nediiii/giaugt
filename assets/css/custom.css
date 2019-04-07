@@ -122,3 +122,14 @@
 #my-post h6 {
   margin: 15px 0px 10px 0px;
 }
+
+.my-post-card-header {
+  margin: 22px 0px 0px 0px;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: 640px) {
+  .my-post-card-header {
+    margin: 0px;
+  }
+}
