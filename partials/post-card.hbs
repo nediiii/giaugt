@@ -33,7 +33,8 @@
 
             <div class="uk-width-expand@m">
                 <article class="uk-article uk-position-relative" style="height:100%">
-                    <h2 class="my-post-card-header"><a class="uk-link-reset uk-text-break" href="{{url}}">{{title}}</a>
+                    <h2 class="{{#if feature_image}}uk-margin-remove{{else}}my-post-card-header{{/if}}"><a
+                            class="uk-link-reset uk-text-break" href="{{url}}">{{title}}</a>
                     </h2>
                     <p class="uk-article-meta uk-margin-remove">
                         <span>
