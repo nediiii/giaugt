@@ -54,6 +54,14 @@ title: more, url: /more/
 2. 修改 `partials/social-icon.hbs` 里的内容，此为社交工具链接，请改为自己的链接
 3. 修改 `partials/comment.hbs` 里的内容，改为自己的 `gitalk` 秘钥
 4. 修改 `partials/author-description.hb`s` 里的内容
+5. 若想删除背景的七彩小球动画，直接删除`default.hbs`里的canvas元素即可  
+也可以在后台`site footer`添加如下代码：
+
+    ```html
+    <script>
+    document.getElementById("colorSwarm").parentNode.removeChild(document.getElementById("colorSwarm"));
+    </script>
+    ```
 
 ## Development
 
