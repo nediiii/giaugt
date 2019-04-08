@@ -96,12 +96,8 @@
   width: 0%;
 }
 
-#my-post p {
-  margin: 10px 0px 0px 15px;
-}
-
-#my-post pre {
-  margin-left: 15px;
+#my-post > * {
+  margin:0px 0px 0px 15px;
 }
 
 #my-post code {
