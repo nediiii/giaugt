@@ -97,7 +97,11 @@
 }
 
 #my-post > * {
-  margin:0px 0px 5px 15px;
+  margin: 0px 0px 10px 0px;
+}
+
+#my-post img {
+  margin: 5px 0px;
 }
 
 #my-post code {
@@ -105,9 +109,10 @@
 }
 
 #my-post blockquote {
-  font-size: 90%;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  font-size: 95%;
+  padding-left: 15px;
+  margin: 0px;
+  border-left: solid 1px grey;
 }
 
 #my-post h1,
@@ -116,7 +121,7 @@
 #my-post h4,
 #my-post h5,
 #my-post h6 {
-  margin: 15px 0px 10px 0px;
+  margin: 25px 0px 15px 0px;
 }
 
 .my-post-card-header {
